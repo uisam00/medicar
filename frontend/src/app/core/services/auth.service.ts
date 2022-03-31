@@ -4,9 +4,10 @@ import { BaseService } from 'src/app/core/services/base.service';
 import { ConfigService } from 'src/app/core/services/config.service';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { LocalStorage, SessionStorage, ROUTES_USER_API } from 'src/app/shared/models/constants';
+import { NewUser } from 'src/app/shared/models/new-user';
 import { UserCredentials } from 'src/app/shared/models/user-credentials';
 
-import { UserToken } from '../../shared/models/user-token';
+import { User } from '../../shared/models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +40,11 @@ export class AuthService extends BaseService {
     }
   }
 
-  login(credentials: UserCredentials): Promise<UserToken | undefined> {
-    return this.http.post<UserToken>(this.urlApi + ROUTES_USER_API.login, credentials).toPromise();
+  login(credentials: UserCredentials): Promise<User | undefined> {
+    return this.http.post<User>(this.urlApi + ROUTES_USER_API.login, credentials).toPromise();
+  }
+
+  signuo(newUser: NewUser): Promise<User | undefined> {
+    return this.http.post<User>(this.urlApi + ROUTES_USER_API.signup, newUser).toPromise();
   }
 }

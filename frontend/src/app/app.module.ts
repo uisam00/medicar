@@ -21,10 +21,12 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RequestInterceptor } from './core/services/request.interceptor.service';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from './core/guards/auth-guard';
+import { CreateAccountComponent } from './modules/authentication/create-account/create-account.component';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    CreateAccountComponent
   ],
   imports: [
     BrowserModule,

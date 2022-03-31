@@ -9,7 +9,19 @@ body { margin: 0;
     font-size: 18px;
     font-style: normal;
     font-weight: 700;
-    line-height: 21px;
+    line-height: 21.09;
     letter-spacing: 0em;
     text-align: left;
+}
+
+.text-black {
+    color: #444444;
+}
+
+.button-auth{
+    width: 45%!important;
+    min-width: unset!important;
+}
+.card-auth {
+    max-width: 30rem;
 }

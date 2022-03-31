@@ -5,7 +5,7 @@ import { LocalStorage, SessionStorage } from 'src/app/shared/models/constants';
 import { Pages } from 'src/app/shared/models/pages';
 import { AuthService } from '../../../core/services/auth.service';
 
-import { UserToken } from '../../../shared/models/user-token';
+import { User } from '../../../shared/models/user';
 import { UserCredentials } from 'src/app/shared/models/user-credentials';
 
 @Component({
@@ -44,12 +44,12 @@ export class LoginComponent implements OnInit {
       .then(response => {
         this.authService.handleResponse(response);
         if (response?.token) {
-          let userToken = response as UserToken;
+          let user = response as User;
           if(this.controls["rememberPassword"].value){
-            localStorage.setItem(LocalStorage.token, userToken.token);
+            localStorage.setItem(LocalStorage.token, user.token);
 
           }else{
-            sessionStorage.setItem(SessionStorage.token, userToken.token);
+            sessionStorage.setItem(SessionStorage.token, user.token);
 
           }
           this.router.navigate([Pages.Authentication.signup]);

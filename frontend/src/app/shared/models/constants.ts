@@ -9,4 +9,6 @@ export const SessionStorage = {
 
 export const ROUTES_USER_API = {
     login:'users/login',
+    signup:'users',
+
 }

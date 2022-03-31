@@ -1,6 +1,6 @@
 <div class="d-flex align-items-center justify-content-center h-100 w-100 ">
 
-  <div class="card-login ">
+  <div class="card-auth">
     <mat-card class="mat-elevation-z0">
       <div class="row">
         
@@ -11,7 +11,7 @@
 
         <form (keyup.enter)="login()"  [formGroup]="form">
           <!-- (keyup.enter)="keyDownFunction()" -->
-          <mat-form-field appearance="outline" class="full-width">
+          <mat-form-field appearance="outline" class="full-width w-100">
             <mat-label>Email ou Login</mat-label>
             <input matInput formControlName="user" maxlength="100" required autocomplete="off">
   
@@ -19,7 +19,7 @@
               Usuário é <strong>obrigatório</strong>
             </mat-error>
           </mat-form-field>
-          <mat-form-field appearance="outline" class="full-width mb-0">
+          <mat-form-field appearance="outline" class="full-width mb-0 w-100">
             <mat-label>Senha</mat-label>
             <input matInput formControlName="password" maxlength="100" required
               [type]="hidePassword ? 'password' : 'text'">
@@ -34,11 +34,11 @@
             Lembrar minha senha
           </mat-checkbox>
         </form>
-        <div class="buttons d-flex justify-content-between">
-          <button mat-button color="primary" class="button text-strong" (click)="goToSignup()" >
+        <div class="d-flex justify-content-between">
+          <button mat-button color="primary" class="button-auth text-strong" (click)="goToSignup()" >
             Criar Conta
           </button> 
-          <button mat-flat-button color="primary" class="button text-strong" (click)="login()" [disabled]="!this.form.valid">
+          <button mat-flat-button color="primary" class="button-auth text-strong" (click)="login()" [disabled]="!this.form.valid">
             Acessar
           </button>  
         </div>        

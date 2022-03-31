@@ -1,1 +1,75 @@
-<p>create-account works!</p>
+<div class="d-flex align-items-center justify-content-center h-100 w-100 ">
+
+    <div class="card-auth">
+        <mat-card class="mat-elevation-z0">
+            <div class="row">
+
+            </div>
+
+            <img class="logo mb-4" src="../../../../assets/img/Logo (1).svg" alt="Logo Medicar">
+            <h2 class="text-black text-strong">Crie sua conta</h2>
+            <mat-card-content>
+
+                <form [formGroup]="form">
+                    <!-- (keyup.enter)="keyDownFunction()" -->
+                    <mat-form-field appearance="outline" class="full-width w-100">
+                        <mat-label>Nome</mat-label>
+                        <input matInput formControlName="username" maxlength="100" required autocomplete="off">
+
+                        <mat-error *ngIf="controls['username'].hasError('required')">
+                            Nome é <strong>obrigatório</strong>
+                        </mat-error>
+                        <mat-error *ngIf="controls['username'].hasError('maxlength')">
+                            Tamanho máximo de <strong>100 caracteres</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="full-width w-100">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email" maxlength="100" required autocomplete="off">
+                        <mat-error *ngIf="controls['email'].hasError('required')">
+                            Email é <strong>obrigatório</strong>
+                        </mat-error>
+                        <mat-error *ngIf="controls['email'].hasError('email')">
+                            Email <strong>inválida</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="full-width mb-0 w-100">
+                        <mat-label>Senha</mat-label>
+                        <input matInput formControlName="password" maxlength="100" required
+                            [type]="hidePassword ? 'password' : 'text'">
+                        <button type="button" mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
+                            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="controls['password'].hasError('required')">
+                            Senha é <strong>obrigatória</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="full-width mb-0 w-100">
+                        <mat-label>Confirmar Senha</mat-label>
+                        <input matInput formControlName="passwordConfirm" maxlength="100" required
+                            [type]="hidePasswordConfirm ? 'password' : 'text'">
+                        <button type="button" mat-icon-button matSuffix
+                            (click)="hidePasswordConfirm = !hidePasswordConfirm">
+                            <mat-icon>{{hidePasswordConfirm ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="controls['passwordConfirm'].hasError('mustMatch')">
+                            Senhas diferentes
+                        </mat-error>
+                        <mat-error *ngIf="controls['passwordConfirm'].hasError('required')">
+                            Confirme a senha
+                        </mat-error>
+                    </mat-form-field>
+                </form>
+                <div class="buttons d-flex justify-content-between">
+                    <button mat-button color="primary" class="button-auth text-strong" (click)="goToSignin()">
+                        Cancelar
+                    </button>
+                    <button mat-flat-button color="primary" class="button-auth text-strong"
+                        [disabled]="!this.form.valid" (click)="signup()">
+                        Confirmar
+                    </button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
