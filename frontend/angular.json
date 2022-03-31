@@ -31,6 +31,9 @@
               "src/assets"
             ],
             "styles": [
+              "src/theme/custom-theme.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/ngx-toastr/toastr.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -99,6 +102,9 @@
               "src/assets"
             ],
             "styles": [
+              "src/theme/custom-theme.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/ngx-toastr/toastr.css",
               "src/styles.scss"
             ],
             "scripts": []

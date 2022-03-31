@@ -1,0 +1,129 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+//light theme
+$bg-theme-light: #fff;
+$color-theme-light: #222;
+//dark theme
+$bg-theme-dark: #222;
+$color-theme-dark: #fff;
+
+$my-primary-color: (
+  50 : #e9f6f7,
+  100 : #c8e9eb,
+  200 : #a4dadd,
+  300 : #80cbcf,
+  400 : #64bfc5,
+  500 : #49b4bb,
+  600 : #42adb5,
+  700 : #39a4ac,
+  800 : #319ca4,
+  900 : #218c96,
+  A100 : #d2fbff,
+  A200 : #9ff7ff,
+  A400 : #6cf2ff,
+  A700 : #52f0ff,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #000000,
+      400 : #000000,
+      500 : #ffffff,
+      600 : #000000,
+      700 : #000000,
+      800 : #ffffff,
+      900 : #ffffff,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #000000,
+      A700 : #000000,
+  )
+);
+
+$my-accent-color: (
+  50 : #e9f6f7,
+  100 : #c8e9eb,
+  200 : #a4dadd,
+  300 : #80cbcf,
+  400 : #64bfc5,
+  500 : #49b4bb,
+  600 : #42adb5,
+  700 : #39a4ac,
+  800 : #319ca4,
+  900 : #218c96,
+  A100 : #d2fbff,
+  A200 : #9ff7ff,
+  A400 : #6cf2ff,
+  A700 : #52f0ff,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #000000,
+      400 : #000000,
+      500 : #ffffff,
+      600 : #000000,
+      700 : #000000,
+      800 : #ffffff,
+      900 : #ffffff,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #000000,
+      A700 : #000000,
+  )
+);
+
+$my-warn-color: (
+  50 : #f7eae9,
+  100 : #ebcbc8,
+  200 : #dda8a4,
+  300 : #cf8580,
+  400 : #c56b64,
+  500 : #bb5149,
+  600 : #b54a42,
+  700 : #ac4039,
+  800 : #a43731,
+  900 : #962721,
+  A100 : #ffd4d2,
+  A200 : #ffa39f,
+  A400 : #ff726c,
+  A700 : #ff5a52,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #000000,
+      400 : #000000,
+      500 : #ffffff,
+      600 : #ffffff,
+      700 : #ffffff,
+      800 : #ffffff,
+      900 : #ffffff,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #000000,
+      A700 : #000000,
+  )
+);
+
+
+$frontend-primary-pallete: mat.define-palette($my-primary-color);
+$frontend-accent-pallete: mat.define-palette($my-accent-color);
+$frontend-warn-pallete: mat.define-palette($my-warn-color);
+
+
+$frontend-theme: mat.define-light-theme((
+  color: (
+    primary: $frontend-primary-pallete,
+    accent: $frontend-accent-pallete,
+    warn: $frontend-warn-pallete,
+  )
+));
+
+
+@include mat.all-component-themes($frontend-theme);
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
