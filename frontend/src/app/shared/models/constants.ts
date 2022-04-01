@@ -1,10 +1,10 @@
 export const LocalStorage = {
     token: 'token',
-    user: 'user',
+    username: 'username',
 }
 export const SessionStorage = {
     token: 'token',
-    user: 'user'
+    username: 'username'
 }
 
 export const ROUTES_USER_API = {

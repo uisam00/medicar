@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-search-consultation',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchConsultationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    console.log(this.authService.getUsername);
+    
   }
 
 }

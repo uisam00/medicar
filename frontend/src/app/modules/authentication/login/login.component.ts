@@ -43,18 +43,18 @@ export class LoginComponent implements OnInit {
     if (!this.form.valid) {
       return;
     }
-   
-    this.authService.login(this.getCredentials())
+   const credentials = this.getCredentials();
+    this.authService.login(credentials)
       .then(response => {
         this.authService.handleResponse(response);
         if (response?.token) {
           let user = response as User;
           if(this.controls["rememberPassword"].value){
             localStorage.setItem(LocalStorage.token, user.token);
-
+            localStorage.setItem(LocalStorage.username, credentials.username );
           }else{
             sessionStorage.setItem(SessionStorage.token, user.token);
-
+            sessionStorage.setItem(SessionStorage.username, credentials.username);
           }
           this.router.navigate([Pages.ClinicalConsultations.initialRoute]);
 

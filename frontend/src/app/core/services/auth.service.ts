@@ -17,6 +17,8 @@ import { User } from '../../shared/models/user';
 export class AuthService extends BaseService {
 
   private token: string = '';
+  private username: string = '';
+
 
   constructor(
     protected notification: NotificationService,
@@ -28,15 +30,22 @@ export class AuthService extends BaseService {
   public get getToken() {
     return this.token;
   }
+  public get getUsername() {
+    return this.username;
+  }
 
   isUserLogged() {
     const tokenSession = sessionStorage.getItem(SessionStorage.token) ?? '';
     const tokenLocal = localStorage.getItem(LocalStorage.token) ?? '';
+    const usernameLocal = localStorage.getItem(LocalStorage.username) ?? '';
+    const usernameSession = sessionStorage.getItem(SessionStorage.username) ?? '';
     if (tokenSession) {
       this.token = tokenSession;
+      this.username = usernameSession;
       return true;
     } else if (tokenLocal) {
       this.token = tokenLocal;
+      this.username = usernameLocal;
       return true;
     } else {
       return false;
