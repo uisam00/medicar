@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpHandler, HttpEvent, HttpRequest, HttpErrorResponse } from "@angular/common/http";
 import { Router, ActivatedRouteSnapshot, RouterStateSnapshot, ActivatedRoute } from '@angular/router';
-import { Observable, throwError} from 'rxjs';
-import {catchError, finalize } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, finalize } from 'rxjs/operators';
 
 import { Notifications } from 'src/app/shared/models/notifications';
 import { StringHelper } from 'src/app/shared/helpers/string-helper';
@@ -13,36 +13,34 @@ import { ToastrService } from 'ngx-toastr';
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
 
-    constructor(private router: Router, private toastr: ToastrService, private activatedRoute: ActivatedRoute ) { }
+    constructor(private router: Router, private toastr: ToastrService, private activatedRoute: ActivatedRoute) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
         return next.handle(this.addAuthToken(request)).pipe(
-            
-            
             catchError((requestError: HttpErrorResponse) => {
-                console.log(request);
-                if (requestError.status === 401) {
-                    localStorage.clear();
-                    sessionStorage.clear();
-                    if(request.url.includes(Pages.Authentication.login)){
-                        this.toastr.error(Notifications.invalidCredentials);
-                    }else{
-                        this.toastr.error(Notifications.disconnect);
-                        this.router.navigate([Pages.Authentication.login]);
-                    }  
-                }
-                else if (requestError.status === 403) {
-                    this.toastr.error(Notifications.withoutPermission);
+                localStorage.clear();
+                sessionStorage.clear();
+                if (requestError.status === 401 || requestError.status === 403) {
+                    this.verifyRoute(request);
                 }
                 else {
-                    this.toastr.error(Notifications.genericError);
+                    this.toastr.warning(Notifications.genericError);
                 }
-                
+
                 return throwError(() => new Error(requestError.message));
             }),
-            finalize(() => {})
+            finalize(() => { })
         );
+    }
+
+    private verifyRoute(request: HttpRequest<any>) {
+        if (request.url.includes(Pages.Authentication.login)) {
+            this.toastr.warning(Notifications.invalidCredentials);
+        } else {
+            this.toastr.warning(Notifications.disconnect);
+            this.router.navigate([Pages.Authentication.login]);
+        }
     }
 
     private addAuthToken(request: HttpRequest<any>) {

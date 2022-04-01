@@ -21,13 +21,17 @@ export class AuthGuard implements CanActivate{
   {
     if (!this.authService.isUserLogged()) {
         return this.unauthorized();
+    }else{
+      let claim = route.data['claim'];
+      console.log(claim);
+      
     }
     return true;
   }
   unauthorized() {
     sessionStorage.clear();
     localStorage.clear();
-    this.toastr.error(Notifications.disconnect);
+    this.toastr.warning(Notifications.disconnect);
     this.router.navigate([Pages.Authentication.login]);
     return false;
   }

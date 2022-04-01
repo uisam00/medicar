@@ -3,8 +3,8 @@ export class Pages {
         login: '/login',
         signup: '/cadastrar'
     }
-    public static Home = {
-        inicio: '/inicio',
+    public static ClinicalConsultations = {
+        initialRoute: '/consultas',
     }
 
 }

@@ -18,7 +18,7 @@ import { DEFAULT_FORMATS } from './shared/helpers/date-helper';
 import { BaseService } from './core/services/base.service';
 import { NotificationService } from './core/services/notification.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { RequestInterceptor } from './core/services/request.interceptor.service';
+import { RequestInterceptor } from './shared/interceptors/request.interceptor.service';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from './core/guards/auth-guard';
 import { CreateAccountComponent } from './modules/authentication/create-account/create-account.component';

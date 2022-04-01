@@ -16,12 +16,10 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { LogoComponent } from './components/logo/logo.component';
-
 @NgModule({
   declarations: [
     NotFoundComponent,
-    LogoComponent
+
   ],
   imports: [
     CommonModule,
@@ -71,7 +69,6 @@ import { LogoComponent } from './components/logo/logo.component';
     NgbModule,
     MatCheckboxModule,
     NotFoundComponent,
-    LogoComponent
   ],
   providers: [
   ]

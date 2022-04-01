@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BaseService } from 'src/app/core/services/base.service';
 import { ConfigService } from 'src/app/core/services/config.service';
 import { NotificationService } from 'src/app/core/services/notification.service';
 import { LocalStorage, SessionStorage, ROUTES_USER_API } from 'src/app/shared/models/constants';
 import { NewUser } from 'src/app/shared/models/new-user';
+import { Pages } from 'src/app/shared/models/pages';
 import { UserCredentials } from 'src/app/shared/models/user-credentials';
 
 import { User } from '../../shared/models/user';
@@ -18,6 +20,7 @@ export class AuthService extends BaseService {
 
   constructor(
     protected notification: NotificationService,
+    private router: Router,
     protected http: HttpClient,
     protected config: ConfigService) {
     super(notification, http, config)

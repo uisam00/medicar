@@ -33,21 +33,23 @@ export class CreateAccountComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      username: ['',  Validators.compose([Validators.required, Validators.maxLength(100),Validators.pattern('^[a-zA-Z ]*$')])],
-      email: ['',  Validators.compose([Validators.required, Validators.email])],
-      password: ['', [Validators.required]],
-
-      passwordConfirm: ['', [Validators.required]]
-  
-    },{ validator: CustomValidators.mustMatch('password', 'passwordConfirm') });
+    this.setForm();
   }
 
-  signup() {    
+  setForm(){
+    this.form = this.formBuilder.group({
+      username: ['', Validators.compose([Validators.required, Validators.maxLength(100), Validators.pattern('^[a-zA-Z ]*$')])],
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      password: ['', [Validators.required]],
+      passwordConfirm: ['', [Validators.required]]
+    }, { validator: CustomValidators.mustMatch('password', 'passwordConfirm') });
+  }
+
+  signup() {
     if (!this.form.valid) {
       return;
     }
-   
+
     this.authService.signuo(this.getNewUser())
       .then(response => {
         this.authService.handleResponse(response);
@@ -55,13 +57,12 @@ export class CreateAccountComponent implements OnInit {
         if (user.username) {
           this.router.navigate([Pages.Authentication.login]);
           this.notification.success(Notifications.userCreated)
-        }else{
+        } else {
           this.notification.warning(Notifications.errorWhenRegistering)
         }
       });
   }
 
-  
   getNewUser(): NewUser {
     let newUser = new NewUser();
     newUser.username = this.controls['username'].value;

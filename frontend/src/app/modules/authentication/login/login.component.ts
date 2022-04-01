@@ -17,12 +17,7 @@ export class LoginComponent implements OnInit {
 
   
   hidePassword = true;
-  form: FormGroup = this.formBuilder.group({
-    user: ['', [Validators.required]],
-    password: ['', [Validators.required]],
-    rememberPassword: [false ],
-
-  });
+  form!: FormGroup; 
 
   get controls() { return this.form.controls; }
   
@@ -33,6 +28,15 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.setForm();
+  }
+
+  setForm(){
+    this.form = this.formBuilder.group({
+      user: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      rememberPassword: [false ],
+    });
   }
   
   login() {    
@@ -52,7 +56,7 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem(SessionStorage.token, user.token);
 
           }
-          this.router.navigate([Pages.Authentication.signup]);
+          this.router.navigate([Pages.ClinicalConsultations.initialRoute]);
 
         }else{
 
