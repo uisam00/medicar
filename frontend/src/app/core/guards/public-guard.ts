@@ -15,9 +15,9 @@ export class PublicGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    let claim = route.routeConfig?.path;
+    let path = route.routeConfig?.path;
 
-    if (this.authService.isUserLogged() && (claim === 'cadastrar' || claim === 'consultar' || claim === '')) {
+    if (this.authService.isUserLogged() && (path === 'cadastrar' || path === 'login' || path === '')) {
 
       this.router.navigate([Pages.ClinicalConsultations.initialRoute]);
 

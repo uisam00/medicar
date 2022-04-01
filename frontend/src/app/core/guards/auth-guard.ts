@@ -21,10 +21,6 @@ export class AuthGuard implements CanActivate{
   {
     if (!this.authService.isUserLogged()) {
         return this.unauthorized();
-    }else{
-      let claim = route.data['claim'];
-      console.log(claim);
-      
     }
     return true;
   }
