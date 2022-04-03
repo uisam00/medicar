@@ -9,19 +9,19 @@ import { StringHelper } from 'src/app/shared/helpers/string-helper';
 import { SessionStorage } from 'src/app/shared/models/constants';
 import { Pages } from 'src/app/shared/models/pages';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
 
-    constructor(private router: Router, private toastr: ToastrService, private activatedRoute: ActivatedRoute) { }
+    constructor(private router: Router, private toastr: ToastrService, private activatedRoute: ActivatedRoute, private authService: AuthService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
         return next.handle(this.addAuthToken(request)).pipe(
             catchError((requestError: HttpErrorResponse) => {
-                localStorage.clear();
-                sessionStorage.clear();
                 if (requestError.status === 401 || requestError.status === 403) {
+                    this.authService.clearUserSession();
                     this.verifyRoute(request);
                 }
                 else {

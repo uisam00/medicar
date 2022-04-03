@@ -1,0 +1,32 @@
+@import "../../../../theme/color.scss";
+
+.logo-container{
+    height: 5vh;
+}
+.logo-container > img {
+    height: 100%;
+}
+.pointer {
+    cursor: pointer;
+}
+
+.text-gray{
+    color: $gray-secundary;
+}
+.text-color-primary {
+    color: $primary-color;
+}
+.text-color-primary:hover {
+    color: $primary-hover;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+@media (max-width: 993px) {
+    .menu-item {
+        justify-content: start;
+    }
+}

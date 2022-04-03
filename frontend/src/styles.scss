@@ -9,7 +9,6 @@ body { margin: 0;
     font-size: 18px;
     font-style: normal;
     font-weight: 700;
-    line-height: 21.09;
     letter-spacing: 0em;
     text-align: left;
 }
@@ -24,4 +23,15 @@ body { margin: 0;
 }
 .card-auth {
     max-width: 30rem;
+}
+
+.general-container{
+    width: 50%;
+}
+
+@media (max-width: 993px) {
+    .general-container {
+        width: 100%;
+
+    }
 }

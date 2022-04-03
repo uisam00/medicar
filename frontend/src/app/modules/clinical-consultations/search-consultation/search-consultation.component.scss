@@ -1,0 +1,14 @@
+#btnNewConsultation {
+    height: 2.4em;
+}
+.div-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (max-width: 993px) {
+    .div-title {
+        display: block;
+        justify-content: flex-start;
+    }
+}

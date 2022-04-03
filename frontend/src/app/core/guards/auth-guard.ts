@@ -25,10 +25,9 @@ export class AuthGuard implements CanActivate{
     return true;
   }
   unauthorized() {
-    sessionStorage.clear();
-    localStorage.clear();
+
     this.toastr.warning(Notifications.disconnect);
-    this.router.navigate([Pages.Authentication.login]);
+    this.authService.logout();
     return false;
   }
 }

@@ -35,7 +35,7 @@ export class AuthService extends BaseService {
   }
 
   isUserLogged() {
-    const tokenSession = sessionStorage.getItem(SessionStorage.token) ?? '';
+    const tokenSession = sessionStorage.getItem(SessionStorage.token);
     const tokenLocal = localStorage.getItem(LocalStorage.token) ?? '';
     const usernameLocal = localStorage.getItem(LocalStorage.username) ?? '';
     const usernameSession = sessionStorage.getItem(SessionStorage.username) ?? '';
@@ -58,5 +58,17 @@ export class AuthService extends BaseService {
 
   signuo(newUser: NewUser): Promise<User | undefined> {
     return this.http.post<User>(this.urlApi + ROUTES_USER_API.signup, newUser).toPromise();
+  }
+
+  clearUserSession(){
+    sessionStorage.setItem(SessionStorage.token, '');
+    localStorage.setItem(LocalStorage.token, '');
+    localStorage.setItem(LocalStorage.username, '');
+    sessionStorage.setItem(SessionStorage.username, '');
+  }
+
+  logout(){
+    this.clearUserSession();
+    this.router.navigate([Pages.Authentication.login]);
   }
 }
