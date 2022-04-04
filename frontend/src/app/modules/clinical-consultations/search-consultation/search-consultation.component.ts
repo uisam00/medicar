@@ -46,8 +46,8 @@ export class SearchConsultationComponent implements OnInit {
     this.isConsultationsEmpty = this.consultations.length == 0;
   }
 
-  getConsultation() {
-    this.consuService.getConsultations()
+  async getConsultation() {
+    await this.consuService.getConsultations()
       .then(response => {
         this.consuService.handleResponse(response);
         if (response) {
@@ -79,6 +79,5 @@ export class SearchConsultationComponent implements OnInit {
         this.notification.success(Notifications.deleteConsultationSucess);
       });
   }
-
 }
 
