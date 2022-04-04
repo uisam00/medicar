@@ -12,3 +12,15 @@ export const ROUTES_USER_API = {
     signup:'users',
 
 }
+
+export const ROUTES_CONSULTATION_API = {
+    consultation: 'consultas/',
+    getSpecialties: 'especialidades/',
+    getDoctors: 'medicos/',
+    getSchedules: 'agendas/'
+
+}
+export const Message = {
+    messageEmpty: 'Nenhum registro encontrado.',
+}
+

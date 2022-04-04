@@ -1,0 +1,50 @@
+<div>
+    <mat-card class="mat-elevation-z0">
+        <mat-card-title class="mb-4">Nova Consulta</mat-card-title>
+        <mat-card-content>
+            <form novalidate [formGroup]="form">
+
+                <mat-form-field class="col-12" appearance="outline">
+                    <mat-label>Especialidade</mat-label>
+                    <mat-select formControlName="specialtyId" (selectionChange)="onSelectSpecialty()">
+                        <mat-option *ngFor="let specialty of specialties" [value]="specialty.id">
+                            {{ specialty.nome }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="col-12" appearance="outline" >
+                    <mat-label>Médico</mat-label>
+                    <mat-select formControlName="doctorId" (selectionChange)="onSelectDoctor()">
+                        <mat-option *ngFor="let doctor of doctors" [value]="doctor.id">
+                            {{ doctor.nome }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="col-12" appearance="outline">
+                    <mat-label>Data</mat-label>
+                    <mat-select  formControlName="scheduleId" (selectionChange)="onSelectSchedule()">
+                        <mat-option *ngFor="let schedule of schedules" [value]="schedule.id">
+                            {{ schedule.dia }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="col-12" appearance="outline">
+                    <mat-label>Hora</mat-label>
+                    <mat-select  formControlName="hour" >
+                        <mat-option *ngFor="let hour of horary" [value]="hour">
+                            {{ hour }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div class="row">
+                    <button mat-button color="primary" class="col-12 col-sm-6 text-strong ht" (click)="cancel()">
+                        Cancelar
+                    </button>
+                    <button mat-flat-button color="primary" class="col-12 col-sm-6 text-strong" (click)="postConsultation()" [disabled]="controls['hour'].disabled || !this.form.valid">
+                        Confirmar
+                    </button>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

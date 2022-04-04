@@ -28,10 +28,10 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.setForm();
+    this.createForm();
   }
 
-  setForm(){
+  createForm(){
     this.form = this.formBuilder.group({
       user: ['', [Validators.required]],
       password: ['', [Validators.required]],
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
       .then(response => {
         this.authService.handleResponse(response);
         if (response?.token) {
-          let user = response as User;
+          let user = response;
           if(this.controls["rememberPassword"].value){
             localStorage.setItem(LocalStorage.token, user.token);
             localStorage.setItem(LocalStorage.username, credentials.username );
@@ -56,8 +56,8 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem(SessionStorage.token, user.token);
             sessionStorage.setItem(SessionStorage.username, credentials.username);
           }
+          this.authService.saveToken()
           this.router.navigate([Pages.ClinicalConsultations.initialRoute]);
-
         }else{
 
         }

@@ -35,20 +35,28 @@ export class AuthService extends BaseService {
   }
 
   isUserLogged() {
+    this.saveToken();
+    return this.token && this.username;
+  }
+
+  saveToken(){
     const tokenSession = sessionStorage.getItem(SessionStorage.token);
     const tokenLocal = localStorage.getItem(LocalStorage.token) ?? '';
     const usernameLocal = localStorage.getItem(LocalStorage.username) ?? '';
     const usernameSession = sessionStorage.getItem(SessionStorage.username) ?? '';
-    if (tokenSession) {
+
+    if(!tokenSession && !tokenLocal && !usernameSession && !usernameLocal){
+      this.token = '';
+      this.username = '';
+      return;
+    }
+
+    if (tokenSession && usernameSession) {
       this.token = tokenSession;
       this.username = usernameSession;
-      return true;
-    } else if (tokenLocal) {
+    } else if (tokenLocal && usernameLocal) {
       this.token = tokenLocal;
       this.username = usernameLocal;
-      return true;
-    } else {
-      return false;
     }
   }
 
@@ -61,10 +69,10 @@ export class AuthService extends BaseService {
   }
 
   clearUserSession(){
-    sessionStorage.setItem(SessionStorage.token, '');
-    localStorage.setItem(LocalStorage.token, '');
-    localStorage.setItem(LocalStorage.username, '');
-    sessionStorage.setItem(SessionStorage.username, '');
+    localStorage.removeItem(LocalStorage.token);
+    localStorage.removeItem(LocalStorage.username);
+    sessionStorage.removeItem(SessionStorage.token);
+    sessionStorage.removeItem(SessionStorage.username);
   }
 
   logout(){

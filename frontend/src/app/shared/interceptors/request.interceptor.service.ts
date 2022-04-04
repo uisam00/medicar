@@ -22,7 +22,7 @@ export class RequestInterceptor implements HttpInterceptor {
             catchError((requestError: HttpErrorResponse) => {
                 if (requestError.status === 401 || requestError.status === 403) {
                     this.authService.clearUserSession();
-                    this.verifyRoute(request);
+                    this.ifIsLoggedNotification();
                 }
                 else {
                     this.toastr.warning(Notifications.genericError);
@@ -34,10 +34,11 @@ export class RequestInterceptor implements HttpInterceptor {
         );
     }
 
-    private verifyRoute(request: HttpRequest<any>) {
-        if (request.url.includes(Pages.Authentication.login)) {
+    private ifIsLoggedNotification() {
+        let token = this.authService.getToken
+        if (StringHelper.isNullOrEmpty(token)) {
             this.toastr.warning(Notifications.invalidCredentials);
-        } else {
+        }else{
             this.toastr.warning(Notifications.disconnect);
             this.router.navigate([Pages.Authentication.login]);
         }
@@ -45,7 +46,7 @@ export class RequestInterceptor implements HttpInterceptor {
 
     private addAuthToken(request: HttpRequest<any>) {
 
-        let token = sessionStorage.getItem(SessionStorage.token);
+        let token = this.authService.getToken
 
         if (!StringHelper.isNullOrEmpty(token)) {
             return request.clone({

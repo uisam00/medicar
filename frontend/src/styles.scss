@@ -24,9 +24,12 @@ body { margin: 0;
 .card-auth {
     max-width: 30rem;
 }
+.pointer {
+    cursor: pointer;
+}
 
 .general-container{
-    width: 50%;
+    width: 70%;
 }
 
 @media (max-width: 993px) {

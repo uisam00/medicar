@@ -17,6 +17,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { MenuTopComponent } from './components/menu-top/menu-top.component';
+import {MatSelectModule} from '@angular/material/select';
 @NgModule({
   declarations: [
     NotFoundComponent,
@@ -44,7 +45,8 @@ import { MenuTopComponent } from './components/menu-top/menu-top.component';
     MatIconModule,
     MatInputModule,
     NgbModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSelectModule
   ],
   exports: [
     CommonModule,
@@ -70,7 +72,8 @@ import { MenuTopComponent } from './components/menu-top/menu-top.component';
     NgbModule,
     MatCheckboxModule,
     NotFoundComponent,
-    MenuTopComponent
+    MenuTopComponent,
+    MatSelectModule
   ],
   providers: [
   ]

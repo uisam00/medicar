@@ -12,3 +12,19 @@
         justify-content: flex-start;
     }
 }
+
+.table-container {
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%;
+    min-width: 880px;
+  }
+  
+  .empty {
+    color: rgba(0, 0, 0, 0.87);
+    font-size: 14px;
+    padding-top: 5px;
+  }
+  
