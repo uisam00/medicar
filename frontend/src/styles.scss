@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import "./theme/color.scss";
+
 html, body { height: 100%; }
 body { margin: 0; 
     font-family: Roboto, "Helvetica Neue", sans-serif; 
@@ -14,7 +16,7 @@ body { margin: 0;
 }
 
 .text-black {
-    color: #444444;
+    color: $black-gray;
 }
 
 .button-auth{
@@ -30,6 +32,9 @@ body { margin: 0;
 
 .general-container{
     width: 70%;
+}
+.aguarde-spinner {
+    color: $gray-primary;
 }
 
 @media (max-width: 993px) {

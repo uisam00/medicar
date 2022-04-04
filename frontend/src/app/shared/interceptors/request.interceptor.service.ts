@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpHandler, HttpEvent, HttpRequest, HttpErrorResponse } from "@angular/common/http";
-import { Router, ActivatedRouteSnapshot, RouterStateSnapshot, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError, finalize } from 'rxjs/operators';
 
 import { Notifications } from 'src/app/shared/models/notifications';
 import { StringHelper } from 'src/app/shared/helpers/string-helper';
-import { SessionStorage } from 'src/app/shared/models/constants';
 import { Pages } from 'src/app/shared/models/pages';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
 
-    constructor(private router: Router, private toastr: ToastrService, private activatedRoute: ActivatedRoute, private authService: AuthService) { }
+    constructor(private router: Router, private toastr: ToastrService, private authService: AuthService,  private spinner: NgxSpinnerService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
+        this.spinner.show();
         return next.handle(this.addAuthToken(request)).pipe(
             catchError((requestError: HttpErrorResponse) => {
                 if (requestError.status === 401 || requestError.status === 403) {
@@ -30,7 +30,7 @@ export class RequestInterceptor implements HttpInterceptor {
 
                 return throwError(() => new Error(requestError.message));
             }),
-            finalize(() => { })
+            finalize(() => {this.spinner.hide();})
         );
     }
 

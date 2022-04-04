@@ -64,12 +64,14 @@ export class NewConsultationComponent implements OnInit {
     this.controls['doctorId'].setValue(null); 
     this.controls['scheduleId'].setValue(null); 
     this.controls['hour'].setValue(null); 
+    this.disableAllForm();
     this.getDoctorsBySpecialty();
   }
 
   onSelectDoctor(){
     this.controls['scheduleId'].setValue(null); 
     this.controls['hour'].setValue(null); 
+    this.controls['hour'].disable(); 
     this.getSchedulesByDoctor();
   }
 

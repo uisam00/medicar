@@ -18,6 +18,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { MenuTopComponent } from './components/menu-top/menu-top.component';
 import {MatSelectModule} from '@angular/material/select';
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   declarations: [
     NotFoundComponent,
@@ -29,6 +30,7 @@ import {MatSelectModule} from '@angular/material/select';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    NgxSpinnerModule,
     MatInputModule,
     MatIconModule,
     MatCardModule,
@@ -56,6 +58,7 @@ import {MatSelectModule} from '@angular/material/select';
     FormsModule,
     MatInputModule,
     MatIconModule,
+    NgxSpinnerModule,
     MatCardModule,
     MatButtonModule,
     LayoutModule,
