@@ -51,11 +51,11 @@
         <div *ngIf="isConsultationsEmpty" class="d-flex justify-content-center empty">
           {{messageEmpty}}
         </div>
-        <mat-paginator [length]="consultations.length" [pageSizeOptions]="[5, 10]" aria-label="Select page">
-        </mat-paginator>
+
       </div>
       <div class="table-footer">
-
+        <mat-paginator [length]="consultations.length" [pageSizeOptions]="[5, 10]" aria-label="Select page">
+        </mat-paginator>
       </div>
     </div>
 
